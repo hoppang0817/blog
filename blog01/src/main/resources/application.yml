@@ -1,6 +1,39 @@
+server:
+  port: 8000  #localhost:8000 
+  servlet:
+    context-path: /blog #프로잭트 진입점 /blog로 시작
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+ 
+ #jsp 파일은 컴파일이 필요한 동적 파일임으로   src/main/resources/static으로 가는것이아닌 src/main안에 만들어준 파일 /WEB-INF/views/로 가서 파일을 찾음 
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ #앞에 붙여주는 경로명
+      suffix: .jsp   #뒤에 붙여주는 경로명
+      
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: cos
     password: cos1234
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update  #최초에는 테이블생성을위해 create로설정 이후에는 update로
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        #PhysicalNamingStrategyStandardImpl 엔티티에 변수명 그대로 테이블 생성
+        #SpringPhysicalNamingStrategy 엔티티에 변수명에 언더스코어를 붙여줌
+      use-new-id-generator-mappings: false
+    show-sql: true   #테이블 생성시 콘솔창에 보여줌
+    properties:
+      hibernate.format_sql: true  #콘솔차엥 보여줄때 이쁘게 정리해서 보여줌
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
