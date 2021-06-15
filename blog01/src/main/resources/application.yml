@@ -11,7 +11,7 @@ server:
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/views/ #앞에 붙여주는 경로명
+      prefix: /WEB-INF/views/ #앞에 붙여주는 경로명  
       suffix: .jsp   #뒤에 붙여주는 경로명
       
   datasource:
