@@ -40,7 +40,7 @@ public class Board {
 	@Lob  //대용량 데이터
 	private String content;  //섬머노트 라이브러리<html>태그가 섞여서 디자인됨
 	
-	@ColumnDefault("0")
+
 	private int count; //조회수
 	
 	//fetch = FetchType.EAGER 게시판을 select할경우 무조건 들고와야하는 데이터 

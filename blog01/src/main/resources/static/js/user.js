@@ -2,7 +2,7 @@ let index1 = {
 	init: function() {
 		$("#btn-save").on("click", () => {
 			this.save();
-		});
+		});	
 	},
 
 	save: function() {
@@ -24,21 +24,20 @@ let index1 = {
 		$.ajax({
 			//통신수행(회원가입수행)
 			type: "POST",
-			url: "/blog/api/user",
-			data:JSON.stringify(data),  //->데이터 형식은 json으로 변경해줌  http body 데이터
-			contentType:"application/json;charset=utf-8", //body데이터가 어떤타입인지
-			dateType:"json"  //응답이 왔을때 기본적으로 모든것이 문자열(jons형태의 문자열이라면=> 자바스크립트 오프젝드로 변환)
+			url: "/auth/joinProc",
+			data: JSON.stringify(data),  //->데이터 형식은 json으로 변경해줌  http body 데이터
+			contentType: "application/json;charset=utf-8", //body데이터가 어떤타입인지
+			dateType: "json"  //응답이 왔을때 기본적으로 모든것이 문자열(jons형태의 문자열이라면=> 자바스크립트 오프젝드로 변환)
 		}).done(function(resp) {
 			//수행정상일때
 			alert("회원가입이 완료되었습니다.");
-			location.href="/blog";
+			location.href = "/";
 		}).fail(function(error) {
 			//실패일때
 			alert(JSON.stringify(error));
-		}); 
+		});
 
 
 	}
-
 }
 index1.init();
