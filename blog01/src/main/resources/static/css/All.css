@@ -1,0 +1,311 @@
+@charset "UTF-8";
+
+ul, ol, li, dl, dd, dt, input, h1, h2, h3, h4, h5, h6, p, b, input,
+   button, textarea, fieldset, legend, td, th {
+   margin: 0px;
+   padding: 0px;
+   font-weight: normal;
+}
+
+html, body {
+   margin: 0px;
+   padding: 0px;
+   width: 100%;
+   height:100%;
+  /* font-size: 10px;*/
+   font-family: "Malgun Gothic", "맑은 고딕";
+   -webkit-text-size-adjust: none;
+}
+body{
+	display: flex;
+	flex-direction: column;
+}
+
+li {
+   list-style: none;
+}
+
+/*회원가입*/
+.valid, .invalid {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.valid {
+	color: green;
+}
+
+.invalid {
+	color: red;
+}
+
+/* 메뉴바 */
+#header {
+	left: 0;
+	top: 0;
+	right: 0;
+	width: 100%;
+	background-image: url('/image/menubar.png');
+	z-index: 110;
+	display: flex;
+}
+
+#header .contains {
+	height: 56px;
+}
+
+#header .logo {
+	float: left;
+	padding-top: 10px
+}
+
+#header .logo img {
+	display: block;
+}
+
+#gnb {
+	float: right;
+	margin-top: 13px;
+	list-style: none;
+}
+
+#gnb li {
+	float: left;
+	margin: 0 14px;
+}
+
+#gnb a {
+	display: block;
+	padding: 5px;
+	font-size: 17px;
+	color: #fff;
+	font-weight: 700;
+	font-family: 'Roboto', sans-serif;
+}
+
+#gnb a:hover {
+	text-decoration: none !important;
+}
+
+#gnb a:active {
+	color: #fff
+}
+
+/* 메인 */
+#content .main_visual {
+	background: #fff;
+}
+
+#content .main_visual .img {
+	display: block;
+	max-width: 100%;
+	height: auto
+}
+
+#detail {
+	text-decoration: none;
+	color: black;
+}
+
+.board_wrap {
+   padding-top: 150px;
+}
+
+#pagebtn{
+	margin-top: 70px; 
+	margin-bottom: 70px;
+}
+
+/*푸터*/
+#footer {
+	margin-top:auto;
+	margin-bottom: 0;
+	padding: 50px 0 40px 0;
+	text-align: center;
+	background-image: url("/image/footer.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 50px 0 40px 0;
+}
+
+#footer .sns {
+	height: 65px
+}
+
+#footer .sns a {
+	margin: 0 18px
+}
+
+#footer .copyright {
+	margin-bottom: 40px;
+	margin-top: 5px;
+	line-height: 14px;
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+}
+
+/*프로필*/
+.title_wrap {
+   height: 77px;
+   border-top: 3px solid #f996c9;
+}
+
+.title_wrap .title {
+   margin-top: -40px;
+   line-height: 24px;
+   text-align: center;
+   font-size: 22px;
+   color: #f996c9;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 800;
+}
+
+.title_wrap .point {
+   display: inline-block;
+   margin: 0 12px;
+   margin-top: -8px;
+   width: 21px;
+   height: 33px;
+   vertical-align: middle;
+   display: none !important;
+}
+
+.panel_wrap {
+   padding: 0 80px;
+}
+
+.profile_wrap {
+   padding-top: 150px;
+}
+
+
+#profile_list {
+   text-align: center;
+   overflow: hidden;
+}
+
+#profile_list li {
+   display: inline-block;
+   position: relative;
+   margin: 0 22px;
+   width: 172px;
+   height: 414px;
+   vertical-align: top;
+   *display: inline;
+   zoom: 1;
+}
+
+#profile_list .profile_thumb {
+   position: relative;
+   margin-bottom: 24px;
+   width: 177px;
+   height: 237px;
+   border-radius: 31px;
+   text-align: left;
+   border: 5px solid #f996c9;
+   z-index: 10;
+   box-sizing: border-box;
+   border: 5px solid #f996c9;
+}
+
+#profile_list .profile_thumb .img {
+   display: block;
+}
+
+#profile_list .profile_thumb .frame {
+   width: 149px;
+   height: 211px;
+   border: 5px solid #ffffff;
+   border-radius: 14px;
+}
+
+#profile_list .profile_img {
+   display: block;
+   z-index: 5;
+   border: 5px solid #fff;
+   border-radius: 26px;
+}
+
+#profile_list .profile_name {
+   line-height: 14px;
+}
+
+#profile_list .profile_name {
+   height: 23px;
+}
+
+#profile_list .profile_name .name {
+   float: left;
+   line-height: 14px;
+   font-size: 13px;
+   color: #231f20;
+}
+
+#profile_list .profile_name .btn_gallery {
+   float: right;
+}
+
+#profile_list .profile_name .btn_gallery .img {
+   display: block;
+}
+
+#profile_list .profile_info {
+   padding-top: 6px;
+   text-align: left;
+   border-top: 2px solid #f996c9;
+}
+
+#profile_list .profile_info p {
+   line-height: 20px;
+   font-size: 13px;
+   color: #231f20;
+   white-space: nowrap;
+}
+
+#profile_list .profile_info p span {
+   color: #6d6e71;
+}
+
+/*앨범*/
+.album_wrap {
+   padding-top: 150px;
+}
+
+.album_wrap .album_header {
+   position: relative;
+   padding-left: 525px;
+   padding-top: 20px;
+   height: 360px;
+}
+
+.album_wrap .album_header .img_album {
+   display: block;
+   position: absolute;
+   left: 0;
+   top: 20px;
+}
+
+.album_wrap .album_header .track_title {
+   margin-bottom: 10px;
+   padding: 0 0 2px 0;
+   line-height: 26px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   color: #f996c9;
+   font-weight: bold;
+   border-bottom: 1px solid #f996c9;
+}
+
+.album_wrap .album_header .track_list li {
+   line-height: 32px;
+   font-size: 13px;
+   color: #6d6e71;
+   font-family: 's-core-dream-medium', sans-serif;
+}
+
+.colse_button{
+	display: flex; 
+	justify-content: flex-end; 
+	width: 888px;
+}

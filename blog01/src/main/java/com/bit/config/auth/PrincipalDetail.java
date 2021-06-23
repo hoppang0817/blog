@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bit.model.User;
 
-import lombok.Getter;
+import lombok.Data;
 //시큐리티 로그인으로 정상적인 로그인이 이루어지고 나며 자동으로 시큐리티 세션에 저장된다
 //이때 세션에 저장할수있는 타입은 UserDetails 타입이여야 함으로 User오브젝트 를 타입변경을 위함
-@Getter
+@Data
 public class PrincipalDetail implements UserDetails {
 	private User user; //콤포지션 -> 객체를 품고있다
 

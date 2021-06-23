@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bit.config.auth.PrincipalDetail;
+import com.bit.dto.ReplySaveRequestDto;
 import com.bit.dto.ResponsDto;
 import com.bit.model.Board;
+import com.bit.model.Reply;
 import com.bit.service.BoardService;
 
 //데이터만 리터함으로
@@ -43,4 +45,25 @@ public class BoardApiController {
 		return new ResponsDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
+//	//데이터를 받을때 dto를 만들어서 받는게 좋음
+//	@PostMapping("/api/board/{boardId}/reply")
+//	public ResponsDto<Integer>replySave(@PathVariable int boardId ,@RequestBody Reply reply,@AuthenticationPrincipal PrincipalDetail principal){
+//		boardService.댓글작성(principal.getUser(),boardId,reply);
+//		return new ResponsDto<Integer>(HttpStatus.OK.value(), 1);
+//	}
+	
+	//데이터를 받을때 dto를 만들어서 받는게 좋음
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResponsDto<Integer>replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto){
+		boardService.댓글작성(replySaveRequestDto);
+		return new ResponsDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	//여기서 boardId는 그저 주소를 만들기 위해 받아온것임 
+	@DeleteMapping("/api/board/{boardId}/reply/{replyId}")
+	public ResponsDto<Integer>replydelete(@PathVariable int replyId){
+		boardService.댓글삭제(replyId);
+		return new ResponsDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	 
 }

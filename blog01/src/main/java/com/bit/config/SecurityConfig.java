@@ -3,6 +3,7 @@ package com.bit.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PrincipalDetailService principalDetailService;
 	
+	@Bean //빈등록 어디서든 사용가능
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
 	@Bean //IoC가 됨 -> 해쉬로 변경하는 이 메소드르 스프링이 관리함
 	public BCryptPasswordEncoder encodePWD() {
 		return new BCryptPasswordEncoder();
@@ -40,9 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()  //csrf 토큰 비활성화 
 			.authorizeRequests()
-				.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/dummy/**") ///auth/쪽으로 들어오는 매체는 허용한다
+				.antMatchers("/adminOnly/**").hasAuthority("ROLE_ADMIN")//ADMIN인 경우만 허용
+				.antMatchers("/","/auth/**","/js/**","/css/**","/image/**") //모두에게 허용 
 				.permitAll()
-				.anyRequest() // auth가아닌 다른 모든 페이지는
+				.anyRequest() // 모두에게 허용 되는 페이지가 아닌 다른 모든 페이지는
 				.authenticated()// 인증이 필요하다
 			.and()
 				.formLogin()

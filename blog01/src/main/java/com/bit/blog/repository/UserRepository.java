@@ -1,8 +1,11 @@
 package com.bit.blog.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import com.bit.model.User;
 
@@ -13,6 +16,11 @@ public interface UserRepository extends JpaRepository<User,Integer>{//아무것�
 
 	//select * from user where username=?1
 	Optional<User> findByUsername(String username);
+	
+	//관리자를 제외한 user만 리스트로 출력
+	@Modifying
+	@Query(value = "select * from user where role not in('ADMIN')", nativeQuery = true)
+	List<User>selectUserList();
 
 }
 

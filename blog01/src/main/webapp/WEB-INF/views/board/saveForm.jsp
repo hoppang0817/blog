@@ -2,7 +2,7 @@
 
 <%@ include file="../layout/hader.jsp"%>
 
-<div class="container">
+<div class="container" style="margin-top: 50px; margin-bottom: 50px">
 	<form>
 		<div class="form-group">
 			<label for="title">Title</label> 

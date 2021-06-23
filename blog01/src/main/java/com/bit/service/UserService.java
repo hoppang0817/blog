@@ -1,7 +1,18 @@
 package com.bit.service;
 
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +32,10 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
+	@Autowired //비밀번호를 암호화 해주기위함
 	private BCryptPasswordEncoder encoder;
+	
+
 	
 	//회원가입이 하나의 트랜잭션으로 묶임
 	@Transactional
@@ -34,9 +47,45 @@ public class UserService {
 			userRepository.save(user);
 	}
 
-	//시큐리티 로그인 사용
+	@Transactional
+	public void 수정하기(User user) {
+		//수정시에는 영속성 컨텍스트에 user오브젝트를 영속화시키고, 영속화된 User오브젝트를 수정
+		//영속화된 오브젝트를 변경하면 트랜잭션이 끝난순간 자동으로 DB에 update문을 날려줌
+		User persistance = userRepository.findById(user.getId())
+				.orElseThrow(()->{
+					return new IllegalArgumentException("회원찾기 실패 : 아이디를 찾을 수 없습니다");
+				});
+		// 새로 작성한 비밀번호를 암호화해주어야함
+		//암호화 하지않으면 시큐리티가 받아주지않음
+		if(persistance.getOauth() == null || persistance.getOauth().equals("")) {//만약 카카오로그인은로 oauth에 내용이있다면 여기에 들어올수없음
+		String rawPassword = user.getPassword();
+		String encPassword = encoder.encode(rawPassword);
+		persistance.setPassword(encPassword);
+		persistance.setEmail(user.getEmail());
+		}
+	
+	}
+	@Transactional(readOnly = true)
+	public User 회원찾기(String username) {
+		User user = userRepository.findByUsername(username).orElseGet(()->{
+			return new User();
+		});
+		return user;
+	}
+	
+	//관리자페이지->회원관리를 위한 목록
+	@Transactional(readOnly = true)
+	public List<User> 회원목록() {
+		return userRepository.selectUserList();
+	}
+	
+	@Transactional
+	public void 탈퇴하기(int userId) {
+		userRepository.deleteById(userId);
+	}
+}
+//시큐리티 로그인 사용
 //	@Transactional(readOnly = true) //select할때 트랜잭션이 시작, 서비스 종료시에 트랜잭션 종료(정합성 유지)
 //	public User 로그인(User user) {
 //		return  userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 //	}
-}

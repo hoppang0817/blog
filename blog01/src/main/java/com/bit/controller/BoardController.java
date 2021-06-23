@@ -24,10 +24,9 @@ public class BoardController {
 	//@AuthenticationPrincipal  PrincipalDetail principal
 	//아무것도 안적었을때 와 /일때 여기로
 	@GetMapping({"","/"})
-	public String index(Model model,@PageableDefault(size = 3,sort="id", direction = Sort.Direction.DESC )Pageable pageable) {//데이터를 가져갈때 model을 사용한다
-		//System.out.println("사용자 아이디는 :" + principal);
+	public String index(Model model,@PageableDefault(size = 5,sort="id", direction = Sort.Direction.DESC )Pageable pageable) {//데이터를 가져갈때 model을 사용한다
 		model.addAttribute("boards", boardService.글목록(pageable));
-		return "index1";
+		return "index1"; 
 	}
 	
 	@GetMapping("/board/saveForm")
@@ -42,7 +41,9 @@ public class BoardController {
 	
 	@GetMapping("/board/{id}")
 	public String findById(@PathVariable int id , Model model) {
+		boardService.조회수증가(id);
 		model.addAttribute("board", boardService.글상세보기(id));
 		return "board/detail";
 	}
+
 }

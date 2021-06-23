@@ -2,6 +2,7 @@ package com.bit.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Reply {
 	@JoinColumn(name = "boardId")
 	private Board board;
 
-	@ManyToOne // 여러개의 답글은 한명의 사용자가 작성할수있다
+	@ManyToOne// 여러개의 답글은 한명의 사용자가 작성할수있다
 	@JoinColumn(name = "userId")
 	private User user;
 	

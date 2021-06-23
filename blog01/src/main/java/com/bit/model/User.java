@@ -32,20 +32,23 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; //auto_increment
 	
-	@Column(nullable = false,length = 30, unique = true) //null이될수없다 , 길이는30까지
+	@Column(nullable = false, length = 100, unique = true) //null이될수없다 , 길이는30까지
 	private String username; //아이디
 	
 	@Column(nullable = false, length = 100)
 	private String password;
 	
-	@Column(nullable = false,length = 50)
+	@Column(nullable = false, length = 50)
 	private String email;
+	
 	
     //@ColumnDefault("'user")
 	//DB에는 RoleType이라는게 없다.
 	//@Enumerated 어노테이션을 사용하여 role타입이 string이라고 알려줘야함
 	@Enumerated(EnumType.STRING)
 	private RoleType role; //Enum을 쓰는게 좋음.->사용하게되면 도메인(어떤 범위)설정가능=3가지중 하나를 선택할수있게 할수있음 // 가입할시 권한정도 admin,user,manager
+	
+	private String oauth;  //kakao,google로그인한사람들 구분
 	
 	@CreationTimestamp //시간이 자동으로 입력
 	private Timestamp createDate;

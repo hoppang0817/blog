@@ -29,11 +29,15 @@ spring:
         #PhysicalNamingStrategyStandardImpl 엔티티에 변수명 그대로 테이블 생성
         #SpringPhysicalNamingStrategy 엔티티에 변수명에 언더스코어를 붙여줌
       use-new-id-generator-mappings: false
-    show-sql: true   #테이블 생성시 콘솔창에 보여줌
+#    show-sql: true   #테이블 생성시 콘솔창에 보여줌
     properties:
-      hibernate.format_sql: true  #콘솔차엥 보여줄때 이쁘게 정리해서 보여줌
+      hibernate.format_sql: true  #콘솔차에 보여줄때 이쁘게 정리해서 보여줌
 
   jackson:
     serialization:
       fail-on-empty-beans: false
+ 
+#cos:
+#  key: 
+ 
       

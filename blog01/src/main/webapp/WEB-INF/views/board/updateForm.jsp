@@ -2,7 +2,7 @@
 
 <%@ include file="../layout/hader.jsp"%>
 
-<div class="container">
+<div class="container" style="margin-top: 50px; margin-bottom: 50px">
 	<form>
 	<input type="hidden" id="id" value="${board.id }">
 		<div class="form-group">
